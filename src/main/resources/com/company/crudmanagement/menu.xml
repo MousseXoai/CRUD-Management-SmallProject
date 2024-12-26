@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.crudmanagement/menu.application.title" opened="true">
+        <item view="User.list" title="msg://com.company.crudmanagement.view.user/UserListView.title"/>
+        <item view="School.list" title="msg://com.company.crudmanagement.view.school/schoolListView.title"/>
+        <item view="Teacher.list" title="msg://com.company.crudmanagement.view.teacher/teacherListView.title"/>
+        <item view="Student.list" title="msg://com.company.crudmanagement.view.student/studentListView.title"/>
+        <item view="Clazz.list" title="msg://com.company.crudmanagement.view.clazz/clazzListView.title"/>
+        <item view="ScoreTable.list" title="msg://com.company.crudmanagement.view.scoretable/scoreTableListView.title"/>
+    </menu>
+
+</menu-config>

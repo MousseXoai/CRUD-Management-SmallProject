@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="CRUDManagement">
+        <createTable tableName="CLAZZ">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CLAZZ"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEACHER_ID" type="UUID"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="CRUDManagement">
+        <createTable tableName="SCHOOL">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SCHOOL"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLAZZ_ID" type="UUID"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="CRUDManagement">
+        <createTable tableName="SCORE_TABLE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SCORE_TABLE"/>
+            </column>
+            <column name="NAME_SUBJECT" type="VARCHAR(255)"/>
+            <column name="SCORE" type="VARCHAR(255)"/>
+            <column name="STUDENT_ID" type="UUID"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="CRUDManagement">
+        <createTable tableName="STUDENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STUDENT"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="BIRTHDAY" type="VARCHAR(255)"/>
+            <column name="CCCD" type="VARCHAR(255)"/>
+            <column name="ADDRESS" type="VARCHAR(255)"/>
+            <column name="PHONE_NUMBER" type="VARCHAR(255)"/>
+            <column name="CLAZZ_ID" type="UUID"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="CRUDManagement">
+        <createTable tableName="TEACHER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TEACHER"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="AGE" type="INT"/>
+            <column name="PHONE_NUMBER" type="VARCHAR(255)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="CRUDManagement">
+        <createIndex indexName="IDX_CLAZZ_TEACHER" tableName="CLAZZ">
+            <column name="TEACHER_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="TEACHER_ID" baseTableName="CLAZZ" constraintName="FK_CLAZZ_ON_TEACHER"
+                                 referencedColumnNames="ID" referencedTableName="TEACHER"/>
+    </changeSet>
+    <changeSet id="7" author="CRUDManagement">
+        <createIndex indexName="IDX_SCHOOL_CLAZZ" tableName="SCHOOL">
+            <column name="CLAZZ_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CLAZZ_ID" baseTableName="SCHOOL" constraintName="FK_SCHOOL_ON_CLAZZ"
+                                 referencedColumnNames="ID" referencedTableName="CLAZZ"/>
+    </changeSet>
+    <changeSet id="8" author="CRUDManagement">
+        <createIndex indexName="IDX_SCORE_TABLE_STUDENT" tableName="SCORE_TABLE">
+            <column name="STUDENT_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="STUDENT_ID" baseTableName="SCORE_TABLE"
+                                 constraintName="FK_SCORE_TABLE_ON_STUDENT" referencedColumnNames="ID"
+                                 referencedTableName="STUDENT"/>
+    </changeSet>
+    <changeSet id="9" author="CRUDManagement">
+        <createIndex indexName="IDX_STUDENT_CLAZZ" tableName="STUDENT">
+            <column name="CLAZZ_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CLAZZ_ID" baseTableName="STUDENT" constraintName="FK_STUDENT_ON_CLAZZ"
+                                 referencedColumnNames="ID" referencedTableName="CLAZZ"/>
+    </changeSet>
+</databaseChangeLog>
