@@ -7,8 +7,10 @@
                   class="com.company.crudmanagement.entity.Clazz">
             <fetchPlan extends="_base">
                 <property name="teacher" fetchPlan="_base"/>
+                <property name="student" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="clazzDl"/>
+            <collection id="studentDc" property="student"/>
         </instance>
     </data>
     <facets>
@@ -28,6 +30,26 @@
                 </actions>
             </entityPicker>
         </formLayout>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button action="studentDataGrid.create"/>
+            <button action="studentDataGrid.edit"/>
+            <button action="studentDataGrid.remove"/>
+        </hbox>
+        <dataGrid id="studentDataGrid" dataContainer="studentDc" width="100%" height="100%">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="name"/>
+                <column property="birthday"/>
+                <column property="cccd"/>
+                <column property="address"/>
+                <column property="phoneNumber"/>
+                <column property="version"/>
+            </columns>
+        </dataGrid>
         <hbox id="detailActions">
             <button id="saveAndCloseBtn" action="saveAction"/>
             <button id="closeBtn" action="closeAction"/>

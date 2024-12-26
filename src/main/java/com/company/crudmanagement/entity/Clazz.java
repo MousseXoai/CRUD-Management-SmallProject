@@ -1,11 +1,13 @@
 package com.company.crudmanagement.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -19,6 +21,10 @@ public class Clazz {
     @Id
     private UUID id;
 
+    @Composition
+    @OneToMany(mappedBy = "clazz")
+    private List<Student> student;
+
     @InstanceName
     @Column(name = "NAME", nullable = false)
     @NotNull
@@ -31,6 +37,14 @@ public class Clazz {
     @Column(name = "VERSION", nullable = false)
     @Version
     private Integer version;
+
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
+    }
 
     public Teacher getTeacher() {
         return teacher;
