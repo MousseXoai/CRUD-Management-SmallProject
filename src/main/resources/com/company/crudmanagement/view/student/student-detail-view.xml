@@ -32,7 +32,7 @@
     <layout>
         <formLayout id="form" dataContainer="studentDc">
             <textField id="nameField" property="name"/>
-            <textField id="birthdayField" property="birthday"/>
+            <dateTimePicker id="birthdayField" property="birthday"/>
             <textField id="cccdField" property="cccd"/>
             <textField id="addressField" property="address"/>
             <textField id="phoneNumberField" property="phoneNumber"/>
