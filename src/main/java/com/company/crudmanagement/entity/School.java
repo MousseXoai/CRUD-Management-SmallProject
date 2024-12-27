@@ -9,8 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "SCHOOL", indexes = {
-        @Index(name = "IDX_SCHOOL_CLAZZ", columnList = "CLAZZ_ID")
+@Table(name = "SCHOOL", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_SCHOOL_CLAZZ", columnNames = {"CLAZZ_ID", "NAME"})
 })
 @Entity
 public class School {

@@ -12,7 +12,8 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "STUDENT", indexes = {
-        @Index(name = "IDX_STUDENT_CLAZZ", columnList = "CLAZZ_ID")
+        @Index(name = "IDX_STUDENT_CLAZZ", columnList = "CLAZZ_ID"),
+        @Index(name = "IDX_STUDENT_SCHOOL_NAME", columnList = "SCHOOL_NAME_ID")
 })
 @Entity
 public class Student {
@@ -32,6 +33,10 @@ public class Student {
     @Column(name = "BIRTHDAY")
     private LocalDateTime birthday;
 
+    @JoinColumn(name = "SCHOOL_NAME_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private School schoolName;
+
     @Column(name = "CCCD")
     private String cccd;
 
@@ -48,6 +53,14 @@ public class Student {
     @Column(name = "VERSION", nullable = false)
     @Version
     private Integer version;
+
+    public School getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(School schoolName) {
+        this.schoolName = schoolName;
+    }
 
     public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;

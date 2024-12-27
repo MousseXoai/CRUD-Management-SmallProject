@@ -3,6 +3,15 @@
       title="msg://studentDetailView.title"
       focusComponent="form">
     <data>
+        <collection id="schoolsDc" class="com.company.crudmanagement.entity.School">
+            <loader id="schoolsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from School e
+                    order by e.name asc]]>
+                </query>
+            </loader>
+            <fetchPlan extends="_base"/>
+        </collection>
         <collection id="clazzesDc" class="com.company.crudmanagement.entity.Clazz">
             <loader id="clazzesDl" readOnly="true">
                 <query>
@@ -17,6 +26,7 @@
             <fetchPlan extends="_base">
                 <property name="score" fetchPlan="_base"/>
                 <property name="clazz" fetchPlan="_base"/>
+                <property name="schoolName" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="studentDl"/>
             <collection id="scoreDc" property="score"/>
@@ -37,6 +47,7 @@
             <textField id="addressField" property="address"/>
             <textField id="phoneNumberField" property="phoneNumber"/>
             <entityComboBox id="clazzField" property="clazz" itemsContainer="clazzesDc"/>
+            <entityComboBox id="schoolNameField" property="schoolName" itemsContainer="schoolsDc"/>
         </formLayout>
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <button action="scoreDataGrid.create"/>
