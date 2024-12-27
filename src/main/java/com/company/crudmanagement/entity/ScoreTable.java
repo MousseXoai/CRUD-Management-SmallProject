@@ -21,7 +21,7 @@ public class ScoreTable {
     private String nameSubject;
 
     @Column(name = "SCORE")
-    private String score;
+    private Double score;
 
     @JoinColumn(name = "STUDENT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,20 +31,20 @@ public class ScoreTable {
     @Version
     private Integer version;
 
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
     public Student getStudent() {
         return student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
     }
 
     public String getNameSubject() {

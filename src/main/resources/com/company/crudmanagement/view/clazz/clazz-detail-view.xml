@@ -3,6 +3,15 @@
       title="msg://clazzDetailView.title"
       focusComponent="form">
     <data>
+        <collection id="teachersDc" class="com.company.crudmanagement.entity.Teacher">
+            <loader id="teachersDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Teacher e
+                    order by e.name asc]]>
+                </query>
+            </loader>
+            <fetchPlan extends="_base"/>
+        </collection>
         <instance id="clazzDc"
                   class="com.company.crudmanagement.entity.Clazz">
             <fetchPlan extends="_base">
@@ -23,12 +32,7 @@
     <layout>
         <formLayout id="form" dataContainer="clazzDc">
             <textField id="nameField" property="name"/>
-            <entityPicker id="teacherField" property="teacher">
-                <actions>
-                    <action id="entityLookup" type="entity_lookup"/>
-                    <action id="entityClear" type="entity_clear"/>
-                </actions>
-            </entityPicker>
+            <entityComboBox id="teacherField" property="teacher" itemsContainer="teachersDc"/>
         </formLayout>
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <button action="studentDataGrid.create"/>

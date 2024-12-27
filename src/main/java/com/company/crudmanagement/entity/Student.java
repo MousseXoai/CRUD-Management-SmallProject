@@ -6,6 +6,7 @@ import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +30,7 @@ public class Student {
     private String name;
 
     @Column(name = "BIRTHDAY")
-    private String birthday;
+    private LocalDateTime birthday;
 
     @Column(name = "CCCD")
     private String cccd;
@@ -47,6 +48,14 @@ public class Student {
     @Column(name = "VERSION", nullable = false)
     @Version
     private Integer version;
+
+    public void setBirthday(LocalDateTime birthday) {
+        this.birthday = birthday;
+    }
+
+    public LocalDateTime getBirthday() {
+        return birthday;
+    }
 
     public List<ScoreTable> getScore() {
         return score;
@@ -86,14 +95,6 @@ public class Student {
 
     public void setCccd(String cccd) {
         this.cccd = cccd;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
     }
 
     public String getName() {
