@@ -13,6 +13,18 @@
             <loader id="studentsDl" readOnly="true">
                 <query>
                     <![CDATA[select e from Student e]]>
+                    <condition>
+                        <and>
+                            <or>
+                                <c:jpql>
+                                    <c:where>e.name like :component_nameFilterField</c:where>
+                                </c:jpql>
+                                <c:jpql>
+                                    <c:where>e.phoneNumber like :component_nameFilterField</c:where>
+                                </c:jpql>
+                            </or>
+                        </and>
+                    </condition>
                 </query>
             </loader>
         </collection>
@@ -34,9 +46,11 @@
             <properties include=".*"/>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
+            <textField id="nameFilterField" placeholder="Name or phone number" width="15em"/>
             <button id="createBtn" action="studentsDataGrid.create"/>
             <button id="editBtn" action="studentsDataGrid.edit"/>
             <button id="removeBtn" action="studentsDataGrid.remove"/>
+            <button id="customersDataGridRefreshBtn" action="studentsDataGrid.refresh"/>
             <simplePagination id="pagination" dataLoader="studentsDl"/>
         </hbox>
         <dataGrid id="studentsDataGrid"
@@ -48,6 +62,7 @@
                 <action id="create" type="list_create"/>
                 <action id="edit" type="list_edit"/>
                 <action id="remove" type="list_remove"/>
+                <action id="refresh" type="list_refresh"/>
             </actions>
             <columns resizable="true">
                 <column property="name"/>
